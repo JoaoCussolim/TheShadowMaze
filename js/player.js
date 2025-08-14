@@ -45,7 +45,6 @@ class Player {
     }
 
     updateLightDirection(mouse) {
-        // Calcula o ângulo entre o jogador e o mouse
         this.lightCone.angle = Math.atan2(mouse.y - this.y, mouse.x - this.x);
     }
 

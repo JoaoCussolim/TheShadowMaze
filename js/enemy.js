@@ -5,7 +5,7 @@ class Enemy {
         this.radius = 10;
         this.color = color;
 
-        this.pulseTimer = Math.random() * 5000; // Começa em tempo aleatório
+        this.pulseTimer = Math.random() * 5000;
         this.pulseDuration = 3000; // Tempo para pulsar e desaparecer
         this.visibleDuration = 1000; // Tempo que fica visível
         this.alpha = 0;
@@ -17,17 +17,13 @@ class Enemy {
 
         this.pulseTimer += deltaTime;
 
-        // Ciclo de pulsação
         const cycleTime = this.pulseDuration + this.visibleDuration;
         if (this.pulseTimer > cycleTime) {
             this.pulseTimer = 0;
             this.alpha = 0;
         } else if (this.pulseTimer > this.pulseDuration) {
-            // Fase visível
             this.alpha = 1;
-            // AQUI: Adicionar lógica de colisão com o jogador
         } else {
-            // Fase de pulsação (aparecendo)
             this.alpha = this.pulseTimer / this.pulseDuration;
         }
     }

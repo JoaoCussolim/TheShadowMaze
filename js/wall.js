@@ -5,7 +5,7 @@ class Wall {
         this.width = width;
         this.height = height;
         this.visibleColor = visibleColor; // Cor da lanterna que revela esta parede
-        this.color = 'gray'; // Cor da parede quando visível
+        this.color = visibleColor; // Cor da parede quando visível
     }
 
     draw(ctx, currentLightColor) {
@@ -13,7 +13,6 @@ class Wall {
             ctx.fillStyle = this.color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
-        // Se a cor da lanterna não for a correta, não desenhamos nada.
     }
 
     collidesWith(player) {

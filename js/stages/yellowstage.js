@@ -1,4 +1,3 @@
-// YellowStage.js
 class YellowStage extends Stage {
     constructor(player) {
         super(player, '#807513'); // Fundo amarelo escuro

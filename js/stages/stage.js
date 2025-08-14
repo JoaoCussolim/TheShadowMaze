@@ -1,4 +1,3 @@
-// Stage.js
 class Stage {
     constructor(player, backgroundColor) {
         this.player = player;
@@ -6,7 +5,6 @@ class Stage {
         this.enemies = [];
     }
 
-    // Método para checar se um ponto (ex: inimigo) está no cone de luz
     isPointInLightCone(point, player) {
         const dx = point.x - player.x;
         const dy = point.y - player.y;
@@ -38,7 +36,6 @@ class Stage {
     draw(ctx, player) {
         ctx.save();
 
-        // 1. Criar o caminho do cone de luz (clipping mask)
         const light = player.lightCone;
         ctx.beginPath();
         ctx.moveTo(player.x, player.y);
@@ -50,21 +47,14 @@ class Stage {
         );
         ctx.closePath();
 
-        // 2. Aplicar o "clip"
         // Tudo desenhado a partir de agora só aparecerá dentro do caminho acima.
         ctx.clip();
 
-        // 3. Desenhar o "mundo" deste stage
-        // Desenha o fundo da cor específica
         ctx.fillStyle = this.backgroundColor;
         ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-        // Desenha os inimigos deste stage
         this.enemies.forEach(enemy => enemy.draw(ctx));
 
-        // AQUI: Desenhe os elementos do puzzle (paredes, etc.) para este stage.
-
-        // 4. Restaurar o contexto para remover o clip
         ctx.restore();
     }
 }
