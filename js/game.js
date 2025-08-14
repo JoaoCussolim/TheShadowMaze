@@ -8,7 +8,6 @@ class Game {
         this.player = new Player(this.width / 2, this.height / 2);
         this.mouse = { x: this.width, y: this.height / 2 };
 
-        // Agora temos apenas um stage
         this.currentStage = new PuzzleStage(this.player);
 
         this.lastTime = 0;
@@ -47,7 +46,7 @@ class Game {
     }
 
     update(deltaTime) {
-        this.player.update();
+        this.player.update(this.width, this.height);
         this.player.updateLightDirection(this.mouse);
         this.currentStage.update(deltaTime, this.player.lightCone);
     }
@@ -57,6 +56,8 @@ class Game {
         this.ctx.fillRect(0, 0, this.width, this.height);
 
         this.currentStage.draw(this.ctx, this.player);
+
+        this.player.draw(this.ctx);
     }
 
     start() {

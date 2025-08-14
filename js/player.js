@@ -17,11 +17,31 @@ class Player {
     handleKeyDown(key) { this.keys[key.toLowerCase()] = true; }
     handleKeyUp(key) { this.keys[key.toLowerCase()] = false; }
 
-    update() {
+    update(canvasWidth, canvasHeight) {
         if (this.keys['w']) this.y -= this.speed;
         if (this.keys['s']) this.y += this.speed;
         if (this.keys['a']) this.x -= this.speed;
         if (this.keys['d']) this.x += this.speed;
+
+        // Colisão com a borda esquerda
+        if (this.x - this.radius < 0) {
+            this.x = this.radius;
+        }
+
+        // Colisão com a borda direita
+        if (this.x + this.radius > canvasWidth) {
+            this.x = canvasWidth - this.radius;
+        }
+
+        // Colisão com a borda superior
+        if (this.y - this.radius < 0) {
+            this.y = this.radius;
+        }
+
+        // Colisão com a borda inferior
+        if (this.y + this.radius > canvasHeight) {
+            this.y = canvasHeight - this.radius;
+        }
     }
 
     updateLightDirection(mouse) {
